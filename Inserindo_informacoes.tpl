@@ -4,8 +4,8 @@ DELETE FROM SEGMERCADO; --Deletando as informações da tabela.
 
 --Vamos adicionar informações a minha tabela ultilizando o PLSQL
 DECLARE
-  v_ID NUMBER(5) := 1;
-  V_DESCRICAO VARCHAR2(100) := 'Varejo';
+  v_ID SEGMERCADO.ID%TYPE := 2;
+  V_DESCRICAO SEGMERCADO.DESCRICAO%TYPE := 'Atacado';
 BEGIN
    INSERT INTO SEGMERCADO(ID, DESCRICAO) VALUES (v_ID, v_DESCRICAO);
    COMMIT;
