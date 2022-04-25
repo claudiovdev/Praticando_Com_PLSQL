@@ -1,5 +1,5 @@
 
--- Adicionando a tabela a coluna DATA_INCLUSAI que havia esquecido!
+-- Adicionando a tabela a coluna DATA_INCLUSAO que havia esquecido!
 ALTER TABLE CLIENTE ADD(DATA_INCLUSAO DATE);
 
 -- Consultando se a coluna foi criada corretamente
