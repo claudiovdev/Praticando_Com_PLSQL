@@ -1,7 +1,6 @@
 -- Estrutura de um cursos recebendo ID e Razao social do cliente.
 DECLARE
-  CURSOR cur_CLIENTE IS 
-  ;
+  CURSOR cur_CLIENTE IS SELECT ID FROM CLIENTE;
   v_SEGMERCADO_ID CLIENTE.SEGMERCADO_ID%TYPE := 1;
   v_ID CLIENTE.ID%TYPE;
 BEGIN
@@ -15,6 +14,5 @@ BEGIN
   CLOSE cur_CLIENTE;
 END;
 
--- Consultando as alterações
 select * from cliente;
 
