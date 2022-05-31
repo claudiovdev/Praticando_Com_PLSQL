@@ -1,0 +1,92 @@
+-- Consultando tabela TALUNO
+SELECT * FROM TALUNO;
+
+-- Adicionando novas colunas a tabela TALUNO
+ALTER TABLE TALUNO ADD ESTADO CHAR(2) DEFAULT 'RJ';
+ALTER TABLE TALUNO ADD SALARIO NUMBER(8,2) DEFAULT 620;
+
+-- Alterando as informações de cada aluno ultilizando um where para informar o codigo do aluno que será atualizado
+UPDATE TALUNO ALU SET
+ESTADO = 'AC', SALARIO = 250
+WHERE ALU.COD_ALUNO = 1;
+
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'SP', ALU.SALARIO = 2000
+WHERE ALU.COD_ALUNO = 2;
+
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'MT', ALU.SALARIO = 800
+WHERE ALU.COD_ALUNO = 3;
+
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'RJ', ALU.SALARIO = 900
+WHERE ALU.COD_ALUNO = 4;
+
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'DF', ALU.SALARIO = 3000
+WHERE ALU.COD_ALUNO = 5;
+
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'RS', ALU.SALARIO = 645
+WHERE ALU.COD_ALUNO = 6;
+
+COMMIT;
+
+-- Selecionando na tabela TALUNO todos os alunos que o estado seja diferente de DF, o salario menor que 800,00 e ordenando o resultado pelo maior salario primeiro
+SELECT * FROM TALUNO ALU
+WHERE ALU.ESTADO <> 'DF'
+AND ALU.SALARIO < 800
+ORDER BY ALU.SALARIO DESC;
+
+-- Adicionando um novo usuario e deixando que os dados DEFAULT  que eu adicionei la em cima preencha as informações que estão faltando
+INSERT INTO TALUNO(COD_ALUNO, NOME, CIDADE, CEP) VALUES(SEQ_ALUNO.NEXTVAL, 'SULAMITA', 'ESPIRITO SANTO', '23000888');
+
+-- Alterando os dados que passei como default
+UPDATE TALUNO ALU SET
+ALU.ESTADO = 'ES',
+ALU.SALARIO = 1498
+WHERE ALU.COD_ALUNO = 7;
+
+-- Alterando 3 colunas em um unico aluno
+UPDATE TALUNO ALU SET
+ALU.NOME = 'VINICIUS',
+ALU.CIDADE = 'RIO GRANDE',
+ALU.ESTADO = 'RS'
+WHERE ALU.COD_ALUNO = 1;
+
+-- Adicionando mais duas colunas na tabela de aluno definindo datas default caso não seja passado nada
+ALTER TABLE TALUNO ADD NASCIMENTO DATE  DEFAULT '01/01/1900';
+ALTER TABLE TALUNO ADD DATA_CRIACAO DATE DEFAULT SYSDATE;
+
+-- Alterando a data de nascimento dos alunos
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '17/07/1989'
+WHERE ALU.COD_ALUNO = 1;
+
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '02/02/1994'
+WHERE ALU.COD_ALUNO = 2;
+
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '08/09/1977'
+WHERE ALU.COD_ALUNO = 3;
+
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '05/05/1988'
+WHERE ALU.COD_ALUNO = 4;
+
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '04/12/1997'
+WHERE ALU.COD_ALUNO = 5;
+
+UPDATE TALUNO ALU SET
+ALU.NASCIMENTO = '01/03/1969'
+WHERE ALU.COD_ALUNO = 6;
+
+COMMIT;
+
+-- Realizando uma busca para os alunos nascidos entre uma certa data. Ultilizando o - BETWEEN -
+SELECT ALU.COD_ALUNO, ALU.NOME, ALU.NASCIMENTO
+FROM TALUNO ALU
+WHERE ALU.NASCIMENTO BETWEEN('01/01/1988')
+AND ('01/01/1998');
